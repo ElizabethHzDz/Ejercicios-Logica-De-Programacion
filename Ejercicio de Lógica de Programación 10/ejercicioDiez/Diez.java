@@ -1,8 +1,6 @@
 package ejercicioDiez;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -54,25 +52,56 @@ public class Diez {
 		
 		System.out.println("\n Introduce el nombre del país en inglés\n");
 		
-		//Ingresamos la entrada del usuario
-		Scanner entrada = new Scanner(System.in);
 		
-		for (int i = 0; i < 5; i++) {
-
-			List<String> valuesList = new ArrayList<String>(diccionario.keySet());
-			int randomIndex = new Random().nextInt(valuesList.size());
-			String randomValue = valuesList.get(randomIndex);
-			System.out.println(randomValue);
-
-			String palabra = entrada.nextLine();
+		
+		int aciertos = 0;
+		int errores = 0;
+		Scanner scanner = new Scanner(System.in);
+		
+		// Hacemos un arreglo de objetos
+		
+		Object[] keyArray = diccionario.keySet().toArray();
+		
+		// Ciclo For para que nos de 5 palabras
+		for (int i=0; i<5; i++) { 
+			
+			Object key = keyArray[new Random().nextInt(keyArray.length)]; // Palabra random de HashMap
+			System.out.println("Dame la traduccion de: " + key);
+			String pais = scanner.next(); 
+			
+			//Verificamos que la traduccion sea correcta y el contador de los aciertos o errores
+			
+			if (pais.contains(diccionario.get(key).toString())){  // Verifica si es igual a la palabra random
+				aciertos++; 
+			} else {
+				errores++; 
+			} 
 		}
+		System.out.println("El total de aciertos es " + aciertos + " y total de errores es " + errores);
+
+		scanner.close();
+	}
+
 		
-		
-		entrada.close();
+		//Ingresamos la entrada del usuario
+//		Scanner entrada = new Scanner(System.in);
+//		
+//		for (int i = 0; i < 5; i++) {
+//
+//			List<String> valuesList = new ArrayList<String>(diccionario.keySet());
+//			int randomIndex = new Random().nextInt(valuesList.size());
+//			String randomValue = valuesList.get(randomIndex);
+//			System.out.println(randomValue);
+//
+//			String palabra = entrada.nextLine();
+//		}
+//		
+//		
+//		entrada.close();
 		
 		
 		
 		
 	}
-}
+
 		
